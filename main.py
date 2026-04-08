@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
 # =============================================================================
-# CONDITIONS INITIALES + FONCTIONS (copie du solver)
+# CONDITIONS INITIALES + FONCTIONS 
 # =============================================================================
 Atmosphere_Initial=750; CarbonateRock_Initial=100000000; DeepOcean_Initial=38000
 FossilFuel_Initial=7500; Plant_Initial=560; Soil_Initial=1500
@@ -152,7 +152,7 @@ def get_consistency_error(method_func, h_list):
     return errors
 
 # =============================================================================
-# 1. GRAPHES DE CONSISTANCE (Pages 5-6 du rapport)
+# 1. GRAPHES DE CONSISTANCE 
 # =============================================================================
 h_values = np.logspace(-2, 0, 10)
 steps = ((2600 - 1800) / h_values).astype(int) # Adjust steps for the new range
@@ -166,13 +166,13 @@ plt.figure(figsize=(12, 5))
 plt.subplot(1, 2, 1)
 plt.loglog(steps, err_euler, '-o', label='Données Euler')
 p_euler = np.polyfit(np.log10(steps), np.log10(err_euler), 1)
-plt.title(f'Max Consistency Error Euler (Pente: {p_euler[0]:.2f})')
+plt.title(f'Max Consistency Error Euler ')
 plt.xlabel('Number of Steps')
 plt.ylabel('Error')
-plt.grid(True, which="both", ls="-")
+#plt.grid(True, which="both", ls="-")
 
 # Plot RK4
-plt.subplot(1, 2, 2)
+# plt.subplot(1, 2, 2)
 plt.loglog(steps, err_rk4, '-o', color='orange', label='Données RK4')
 p_rk4 = np.polyfit(np.log10(steps), np.log10(err_rk4), 1)
 plt.title(f'Max Consistency Error RK4 (Pente: {p_rk4[0]:.2f})')
@@ -182,7 +182,7 @@ plt.tight_layout()
 plt.show()
 
 # =============================================================================
-# 2. ANALYSE DE STABILITÉ (Page 7 du rapport)
+# 2. ANALYSE DE STABILITÉ 
 # =============================================================================
 def stability_test(method_func, h):
     t_range = (1800, 2600)
@@ -215,31 +215,5 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# =============================================================================
-# 3. TEMPS D'EXÉCUTION (Page 10 du rapport)
-# =============================================================================
-h_bench = [0.1, 0.05, 0.02, 0.01, 0.005]
-time_euler = []
-time_rk4 = []
 
-for h in h_bench:
-    # Adjust the duration for execution time test to 800 years (2600 - 1800)
-    n = int(800 / h)
-    
-    start = time.time()
-    euler(x0, 1800, 2600, n)
-    time_euler.append(time.time() - start)
-    
-    start = time.time()
-    rk4(x0, 1800, 2600, n)
-    time_rk4.append(time.time() - start)
-
-plt.figure(figsize=(8, 5))
-plt.plot(h_bench, time_euler, 'b-o', label='Euler Execution Time')
-plt.plot(h_bench, time_rk4, 'g-s', label='RK4 Execution Time')
-plt.xlabel('Step Size (h)')
-plt.ylabel('Execution Time (seconds)')
-plt.title('Execution Time Comparison (1800-2600)')
-plt.legend()
-plt.grid(True, ls='--')
-plt.show()
+  
