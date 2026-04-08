@@ -125,11 +125,11 @@ def make_plot(t, X, title):
 
 print("Génération des figures...")
 fig_euler = make_plot(t_e, X_e, 'Carbon Cycle Model - Euler Method')
-fig_euler.savefig('/mnt/user-data/outputs/fig_cycle_euler.png', dpi=150, bbox_inches='tight')
+plt.show()
 plt.close()
 
 fig_rk4 = make_plot(t_r, X_r, 'Carbon Cycle Model - Runge-Kutta Method')
-fig_rk4.savefig('/mnt/user-data/outputs/fig_cycle_rk4.png', dpi=150, bbox_inches='tight')
+plt.show()
 plt.close()
 
 print("Done.")
