@@ -215,5 +215,31 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
+# Calculate Atmospheric CO2 and Global Temperature for Euler method
+atm_co2_e = np.array([AtmCO2(atm) for atm in X_e[:, 0]])
+global_temp_e = np.array([GlobalTemp(co2) for co2 in atm_co2_e])
 
+# Calculate Atmospheric CO2 and Global Temperature for RK4 method
+atm_co2_r = np.array([AtmCO2(atm) for atm in X_r[:, 0]])
+global_temp_r = np.array([GlobalTemp(co2) for co2 in atm_co2_r])
+
+# Plot Global Temperature for Euler method
+plt.figure(figsize=(12, 6))
+plt.plot(t_e, global_temp_e, label='Global Temperature - Euler', color='red')
+plt.xlabel('Year')
+plt.ylabel('Global Temperature (°C)')
+plt.title('Global Temperature Simulation (Euler Method)')
+plt.grid(True)
+plt.legend()
+plt.show()
+
+# Plot Global Temperature for RK4 method
+plt.figure(figsize=(12, 6))
+plt.plot(t_r, global_temp_r, label='Global Temperature - RK4', color='blue')
+plt.xlabel('Year')
+plt.ylabel('Global Temperature (°C)')
+plt.title('Global Temperature Simulation (Runge-Kutta Method)')
+plt.grid(True)
+plt.legend()
+plt.show()
   
