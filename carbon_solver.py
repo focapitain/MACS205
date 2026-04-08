@@ -113,8 +113,8 @@ def rk4(x0, t0, t_end, n_steps):
 # =============================================================================
 # REFERENCE + SIMULATION PRINCIPALE
 # =============================================================================
-t_start, t_end = 1850, 2100
-N_main = 250  # 250 pas = dt=1 an
+t_start, t_end = 1850, 2600
+N_main = 750  # 250 pas = dt=1 an
 
 print("Calcul référence scipy RK45...")
 sol_ref = solve_ivp(derivative_scipy, [t_start, t_end], x0,
